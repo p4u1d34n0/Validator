@@ -1,0 +1,19 @@
+{
+    "name": "p4u1d34n0/validator",
+    "description": "Form Input Validator",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["form", "validation", "input"],
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "FormValidation\\": "src/FormValidation/"
+        }
+    },
+    "authors": [
+        {
+            "name": "paul dean"
+        }
+    ],
+    "require": {}
+}
