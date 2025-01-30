@@ -1,4 +1,4 @@
-# FormValidation - PHP Validation Library
+# Validator - PHP Form Validation Library
 
 ## Overview
 `FormValidation` is a lightweight, extensible PHP validation library that allows you to validate form input easily. It comes with built-in validation rules and supports custom rule extensions.
