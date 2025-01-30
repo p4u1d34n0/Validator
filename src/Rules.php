@@ -51,4 +51,40 @@ class Rules
             $validator->addError($field, self::getMessage($field, 'url'));
         }
     }
+
+    public static function complexity($validator, $field, $value, $parameter)
+    {
+        $rules = explode(',', $parameter);
+        $requirements = [
+            'alpha'   => 0,
+            'numeric' => 0,
+            'symbol'  => 0
+        ];
+
+        foreach ($rules as $rule) {
+            [$type, $count] = explode(':', $rule);
+            $requirements[$type] = (int)$count;
+        }
+
+        $alphaCount   = preg_match_all('/[a-zA-Z]/', $value);
+        $numericCount = preg_match_all('/\d/', $value);
+        $symbolCount  = preg_match_all('/[^a-zA-Z\d]/', $value);
+
+        if ($alphaCount < $requirements['alpha']) {
+            $message = "$field must contain at least {$requirements['alpha']} alphabetic characters.";
+            $validator->addError($field, $message);
+        }
+        
+        if ($numericCount < $requirements['numeric']) {
+            $message = "$field must contain at least {$requirements['numeric']} numeric characters.";
+            $validator->addError($field, $message);
+        }
+
+        if ($symbolCount < $requirements['symbol']) {
+            $message = "$field must contain at least {$requirements['symbol']} special characters.";
+            $validator->addError($field, $message);
+        }
+    }
+
+    
 }
